@@ -9,41 +9,48 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f4f7f6; /* Light grey background */
-            color: #333; /* Darker text */
+            background: linear-gradient(135deg, #e0e7ef 0%, #f4f7f6 100%);
+            color: #333;
         }
         .section-title {
-            border-bottom: 2px solid #4a90e2; /* Blue underline for titles */
+            border-bottom: 2px solid #4a90e2;
             padding-bottom: 0.5rem;
             margin-bottom: 1.5rem;
-            color: #2c5282; /* Darker blue for titles */
+            color: #2c5282;
+            letter-spacing: 0.01em;
         }
         .card {
             background-color: #ffffff;
-            border-radius: 0.75rem; /* Rounded corners */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 6px 24px rgba(74, 144, 226, 0.07);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: box-shadow 0.3s;
+        }
+        .card:hover {
+            box-shadow: 0 12px 32px rgba(74, 144, 226, 0.15);
         }
         .highlight-text {
-            color: #4a90e2; /* Blue for highlighted text */
+            color: #4a90e2;
             font-weight: 600;
         }
-        .experience-item {
-            border-left: 4px solid #4a90e2; /* Blue line for experience items */
-            padding-left: 1rem;
-            margin-bottom: 1rem;
-        }
         .skill-badge {
-            background-color: #e0f2fe; /* Light blue background for badges */
-            color: #2c5282; /* Dark blue text for badges */
-            padding: 0.4rem 0.8rem;
-            border-radius: 9999px; /* Pill shape */
-            font-size: 0.875rem;
+            background: linear-gradient(90deg, #e0f2fe 0%, #fff 100%);
+            color: #2672B6;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 1rem;
             font-weight: 500;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
+            margin: 0.3rem;
             display: inline-block;
+            transition: background 0.3s, transform 0.3s;
+            box-shadow: 0 2px 8px rgba(74, 144, 226, 0.07);
+            cursor: pointer;
+        }
+        .skill-badge:hover {
+            background: linear-gradient(90deg, #4a90e2 0%, #e0f2fe 100%);
+            color: #fff;
+            transform: scale(1.08);
         }
         .contact-icon {
             width: 1.25rem;
@@ -51,7 +58,7 @@
             vertical-align: middle;
             margin-right: 0.5rem;
         }
-        /* Timeline specific styles */
+        /* Timeline styles */
         .timeline {
             position: relative;
             padding: 1rem 0;
@@ -63,7 +70,7 @@
             top: 0;
             bottom: 0;
             width: 4px;
-            background: #cbd5e0; /* Light grey line */
+            background: #cbd5e0;
             transform: translateX(-50%);
             border-radius: 2px;
         }
@@ -72,73 +79,59 @@
             justify-content: space-between;
             margin-bottom: 2rem;
             position: relative;
+            z-index: 1;
         }
         .timeline-item:nth-child(odd) .timeline-content {
             text-align: right;
-            padding-right: 2.5rem;
             align-items: flex-end;
+            margin-right: 50%;
+            background: linear-gradient(90deg, #e3eefe 60%, #fff 100%);
         }
         .timeline-item:nth-child(even) .timeline-content {
             text-align: left;
-            padding-left: 2.5rem;
             align-items: flex-start;
+            margin-left: 50%;
+            background: linear-gradient(270deg, #e3eefe 60%, #fff 100%);
         }
         .timeline-item::before {
             content: '';
             position: absolute;
-            top: 0.5rem;
+            top: 0.7rem;
             left: 50%;
             transform: translateX(-50%);
-            width: 16px;
-            height: 16px;
-            background: #4a90e2; /* Blue dot */
+            width: 18px;
+            height: 18px;
+            background: #4a90e2;
             border-radius: 50%;
-            z-index: 10;
-            border: 2px solid #ffffff; /* White border for the dot */
+            z-index: 2;
+            border: 2px solid #fff;
         }
         .timeline-content {
-            width: calc(50% - 1rem); /* Adjust width for spacing */
-            padding: 0.5rem 1rem;
-            background-color: #ffffff;
+            width: calc(50% - 1rem);
+            padding: 1rem;
+            background-color: #fff;
             border-radius: 0.5rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 8px rgba(74, 144, 226, 0.05);
             display: flex;
             flex-direction: column;
+            transition: background 0.3s;
         }
-        .timeline-item:nth-child(odd) .timeline-content {
-            margin-right: 50%; /* Pushes content to the left */
+        .timeline-content:hover {
+            background: #e0f2fe;
         }
-        .timeline-item:nth-child(even) .timeline-content {
-            margin-left: 50%; /* Pushes content to the right */
-        }
-
-        /* Responsive adjustments for timeline */
-        @media (max-width: 768px) {
-            .timeline::before {
-                left: 1rem; /* Move line to left for small screens */
-                transform: translateX(0);
-            }
-            .timeline-item {
-                justify-content: flex-start;
-                flex-direction: column; /* Stack content vertically */
-            }
-            .timeline-item::before {
-                left: 1rem; /* Align dot with line */
-                transform: translateX(-50%);
-            }
+        @media (max-width: 900px) {
+            .timeline::before { left: 1rem; transform: none; }
+            .timeline-item { flex-direction: column; }
+            .timeline-item::before { left: 1rem; }
             .timeline-content {
-                width: 100%; /* Full width */
-                padding-left: 2.5rem; /* Indent content */
+                width: 100%;
+                margin-left: 0;
+                margin-right: 0;
                 text-align: left;
-                margin-left: 0; /* Reset margin */
-                margin-right: 0; /* Reset margin */
             }
             .timeline-item:nth-child(odd) .timeline-content,
             .timeline-item:nth-child(even) .timeline-content {
-                text-align: left;
-                padding-left: 2.5rem;
-                margin-left: 0;
-                margin-right: 0;
+                background: #fff;
             }
         }
     </style>
@@ -148,47 +141,52 @@
     <div class="max-w-4xl mx-auto">
 
         <!-- Header Section -->
-        <header class="text-center mb-8 p-6 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-xl shadow-lg">
-            <h1 class="text-4xl sm:text-5xl font-extrabold mb-2">Sudha Srinivasan</h1>
-            <p class="text-xl sm:text-2xl font-light">Decisive, Strategic, and Performance-Driven Professional</p>
-            <p class="text-lg mt-2">Targeting Senior Level Assignments in Service Delivery</p>
-            <div class="flex flex-wrap justify-center mt-4 text-sm sm:text-base">
-                <span class="mx-2 flex items-center">
-                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
-                    sudhasrinivasan1982@gmail.com
-                </span>
-                <span class="mx-2 flex items-center">
-                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
-                    London, United Kingdom
-                </span>
-                <span class="mx-2 flex items-center">
-                    <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.68 15.653A8.985 8.985 0 0110 18c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9c0 2.476-.98 4.71-2.52 6.353l.001.001zm-6.68-7.653a2 2 0 100 4 2 2 0 000-4z" clip-rule="evenodd"></path></svg>
-                    <a href="https://uk.linkedin.com/in/sudha-srinivasan-a9b85a48" target="_blank" class="text-white hover:text-blue-200 underline">LinkedIn Profile</a>
-                </span>
+        <header class="text-center mb-8 p-8 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-xl shadow-xl relative overflow-hidden">
+            <div class="flex flex-col items-center">
+                <img src="![image1](image1)"
+                    alt="Sudha Srinivasan" class="rounded-full border-4 border-white shadow-lg mb-4 w-32 h-32 object-cover">
+                <h1 class="text-4xl sm:text-5xl font-extrabold mb-2">Sudha Srinivasan</h1>
+                <p class="text-xl sm:text-2xl font-light">Decisive, Strategic, and Performance-Driven Professional</p>
+                <p class="text-lg mt-2">Targeting Senior Level Assignments in Service Delivery</p>
+                <div class="flex flex-wrap justify-center mt-4 text-sm sm:text-base gap-3">
+                    <span class="mx-2 flex items-center">
+                        <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                        sudhasrinivasan1982@gmail.com
+                    </span>
+                    <span class="mx-2 flex items-center">
+                        <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9z" clip-rule="evenodd"></path></svg>
+                        London, United Kingdom
+                    </span>
+                    <span class="mx-2 flex items-center">
+                        <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.68 15.653A8.985 8.985 0 0110 18c-4.968 0-9-4.032-9-9a9 9 0 1117.68 6.653z" clip-rule="evenodd"></path></svg>
+                        <a href="https://uk.linkedin.com/in/sudha-srinivasan-a9b85a48" target="_blank" class="underline hover:text-blue-200">LinkedIn Profile</a>
+                    </span>
+                </div>
+                <a href="#" class="mt-5 inline-block bg-white text-blue-700 font-semibold px-6 py-2 rounded-full shadow hover:bg-blue-100 transition" download>Download Resume</a>
             </div>
         </header>
 
         <!-- Executive Profile -->
-        <section class="card">
-            <h2 class="text-2xl font-bold section-title">Executive Profile</h2>
+        <section class="card animate-fade-in">
+            <h2 class="section-title">Executive Profile</h2>
             <p class="mb-4">A result-oriented, energetic professional offering <span class="highlight-text">over 16 years of extensive experience in Service Delivery</span>.</p>
             <ul class="list-disc list-inside space-y-2 text-gray-700">
-                <li>Highly skilled in <span class="highlight-text">F&A towers</span> from customer invoicing to period close/year-end finalization; coordinated with statutory auditors to complete and finalize financial statements.</li>
-                <li>Spearheaded the <span class="highlight-text">service delivery of R2R, O2C, and P2P processes</span> for leading customers across Foods and Beverages, Telecom, Insurance, Manufacturing, Lighting/Health Care majors.</li>
-                <li>Expertise in core accounting and industry to direct <span class="highlight-text">process excellence and consistent service delivery</span>; acknowledged with various awards for performance in General Electric & Genpact, IBM, Saint Gobain Glass, WNS, and Hewlett Packard.</li>
-                <li>Led the <span class="highlight-text">transition team</span> to migrate processes from customer locations across Ireland, Germany, Vietnam, China, UAE, Malaysia, and India for transfer of complex F&A processes to offshore delivery centers.</li>
-                <li>Supported <span class="highlight-text">solution strategy</span> by encompassing customer’s requirements, gaining insights, and thereby being pivotal towards providing final solutions to customers.</li>
-                <li>Excellent track record of spearheading <span class="highlight-text">service improvement programs</span> for minimizing gaps in productivity to ensure effectiveness and efficiency in delivery.</li>
-                <li>Interfaced with stakeholders and identified business needs; bridged the gap between functional groups and technology to foster targeted and innovative solution development.</li>
-                <li>Led initiatives comprising <span class="highlight-text">reengineering of business service processes</span>; evolved delivery processes and influenced operational issues.</li>
-                <li>Notable success in leading design & development of application/software; rich experience in <span class="highlight-text">requirement gathering & analysis, implementation, and application management</span>.</li>
-                <li>Impeccable record of <span class="highlight-text">leading high-performance cross-functional teams</span> towards accomplishment of common goals and managing multiple stakeholders across leadership & engagements.</li>
+                <li>Highly skilled in <span class="highlight-text">F&A towers</span> from customer invoicing to period close/year-end finalization; coordinated with statutory auditors to complete audits.</li>
+                <li>Spearheaded the <span class="highlight-text">service delivery of R2R, O2C, and P2P processes</span> for leading customers across Foods and Beverages, Telecom, Insurance, Manufacturing, Banking, and Medical industries.</li>
+                <li>Expertise in core accounting and industry to direct <span class="highlight-text">process excellence and consistent service delivery</span>; acknowledged with various awards for outstanding contributions.</li>
+                <li>Led the <span class="highlight-text">transition team</span> to migrate processes from customer locations worldwide for seamless integration.</li>
+                <li>Supported <span class="highlight-text">solution strategy</span> by encompassing customer requirements, gaining insights, and pivotal towards providing final solutions.</li>
+                <li>Excellent track record of spearheading <span class="highlight-text">service improvement programs</span> for minimizing gaps in productivity to ensure effectiveness and efficiency.</li>
+                <li>Interfaced with stakeholders and identified business needs; bridged gaps between functional groups and technology for targeted solution development.</li>
+                <li>Led <span class="highlight-text">reengineering of business service processes</span>; evolved delivery processes and influenced operational issues.</li>
+                <li>Success in leading design & development of applications/software; rich experience in <span class="highlight-text">requirement gathering & analysis, implementation, and support</span>.</li>
+                <li>Impeccable record of <span class="highlight-text">leading high-performance cross-functional teams</span> toward accomplishment of common goals and managing multiple stakeholders.</li>
             </ul>
         </section>
 
         <!-- Key Impact Areas -->
-        <section class="card">
-            <h2 class="text-2xl font-bold section-title">Key Impact Areas</h2>
+        <section class="card animate-fade-in">
+            <h2 class="section-title">Key Impact Areas</h2>
             <div class="flex flex-wrap">
                 <span class="skill-badge">Team Building & Leadership</span>
                 <span class="skill-badge">SLA / KPI Management</span>
@@ -202,9 +200,10 @@
         </section>
 
         <!-- Career Timeline Infographic -->
-        <section class="card">
-            <h2 class="text-2xl font-bold section-title">Career Timeline</h2>
+        <section class="card animate-fade-in">
+            <h2 class="section-title">Career Timeline</h2>
             <div class="timeline">
+                <!-- Timeline items as before -->
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3 class="text-lg font-semibold text-gray-800">Tata Consultancy Services</h3>
@@ -258,9 +257,8 @@
         </section>
 
         <!-- Professional Experience -->
-        <section class="card">
-            <h2 class="text-2xl font-bold section-title">Professional Experience</h2>
-
+        <section class="card animate-fade-in">
+            <h2 class="section-title">Professional Experience</h2>
             <div class="experience-item">
                 <h3 class="text-xl font-semibold text-gray-800">Project Manager – Service Delivery (Finance)</h3>
                 <p class="text-gray-600 mb-2">Tata Consultancy Services, Chennai | Since Mar’23</p>
@@ -273,7 +271,6 @@
                     <li>Drove a project in implementation of SAP & conversion of manual process into automated process.</li>
                 </ul>
             </div>
-
             <div class="experience-item">
                 <h3 class="text-xl font-semibold text-gray-800">GPO Accounts Payable (Medical Firm)</h3>
                 <p class="text-gray-600 mb-2">Tata Consultancy Services, Chennai | Oct 2021 – Feb 2023</p>
@@ -290,7 +287,6 @@
                     <li>Maintaining regular reviews and visibility to service requests to proactively address requests.</li>
                 </ul>
             </div>
-
             <div class="experience-item">
                 <h3 class="text-xl font-semibold text-gray-800">Operations Manager / Intercompany Manager</h3>
                 <p class="text-gray-600 mb-2">General Electric & Genpact India Private Limited, Chennai | Feb’17 – Oct’21</p>
@@ -306,42 +302,46 @@
                     <li>Period end management including Accruals Entries, Provision, Forex Reevaluation.</li>
                 </ul>
             </div>
-
+            <!-- Other experience items condensed for space, add details as needed -->
             <div class="experience-item">
                 <h3 class="text-xl font-semibold text-gray-800">Manager – Shared Services (Food & Beverages client)</h3>
                 <p class="text-gray-600 mb-2">IBM India Pvt Ltd, Chennai, India | May’14 – Aug’16</p>
             </div>
-
             <div class="experience-item">
                 <h3 class="text-xl font-semibold text-gray-800">Team Lead / Manager</h3>
                 <p class="text-gray-600 mb-2">Saint Gobain Glass India Limited, Chennai, India | Oct’11 – May’14</p>
             </div>
-
             <div class="experience-item">
                 <h3 class="text-xl font-semibold text-gray-800">Process Analyst / Senior Finance Analyst – Accounts Payable</h3>
                 <p class="text-gray-600 mb-2">WNS Global Services, Chennai, India | Dec’07 – May’11</p>
             </div>
-
             <div class="experience-item">
                 <h3 class="text-xl font-semibold text-gray-800">Finance Associate</h3>
                 <p class="text-gray-600 mb-2">Hewlett Packard, Chennai | Aug’05 – Nov’07</p>
             </div>
-
         </section>
 
         <!-- Education & Credentials -->
-        <section class="card">
-            <h2 class="text-2xl font-bold section-title">Education & Credentials</h2>
+        <section class="card animate-fade-in">
+            <h2 class="section-title">Education & Credentials</h2>
             <p class="text-gray-700">Bachelor of Corporate Secretaryship from Madras University, Chennai in 2002.</p>
         </section>
 
-        <!-- Personal Details (Optional, can be condensed) -->
-        <section class="card text-sm text-gray-600">
-            <h2 class="text-2xl font-bold section-title">Personal Details</h2>
+        <!-- Personal Details -->
+        <section class="card text-sm text-gray-600 animate-fade-in">
+            <h2 class="section-title">Personal Details</h2>
             <p>Languages Known: English, Hindi and Tamil</p>
         </section>
-
     </div>
-
+    <script>
+        // Simple fade-in animation for sections
+        document.querySelectorAll('.animate-fade-in').forEach((section, i) => {
+            section.style.opacity = 0;
+            setTimeout(() => {
+                section.style.transition = 'opacity 1s';
+                section.style.opacity = 1;
+            }, 200 + i * 200);
+        });
+    </script>
 </body>
 </html>
